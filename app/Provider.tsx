@@ -11,7 +11,7 @@ import { ReactNode } from "react";
 
 const Provider = ({ children }: { children: ReactNode }) => {
   const { user: clerkUser } = useUser();
-
+  if (!clerkUser) return <Loader />;
   return (
     <LiveblocksProvider
       authEndpoint="/api/liveblocks-auth"
@@ -23,7 +23,7 @@ const Provider = ({ children }: { children: ReactNode }) => {
       resolveMentionSuggestions={async ({ text, roomId }) => {
         const roomUsers = await getDocumentUsers({
           roomId,
-          currentUser: clerkUser?.emailAddresses[0].emailAddress!,
+          currentUser: clerkUser.emailAddresses[0].emailAddress,
           text,
         });
 

@@ -6,7 +6,6 @@
  *
  */
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
-import { mergeRegister } from "@lexical/utils";
 import {
   $createParagraphNode,
   $isRootOrShadowRoot,
@@ -26,8 +25,7 @@ import {
   $isHeadingNode,
 } from "@lexical/rich-text";
 import { $setBlocksType } from "@lexical/selection";
-import { $findMatchingParent } from "@lexical/utils";
-import React from "react";
+import { $findMatchingParent, mergeRegister } from "@lexical/utils";
 import {
   useCallback,
   useEffect,
@@ -73,7 +71,7 @@ export default function ToolbarPlugin() {
       }),
       editor.registerCommand(
         SELECTION_CHANGE_COMMAND,
-        (_payload, _newEditor) => {
+        () => {
           $updateToolbar();
           return false;
         },
