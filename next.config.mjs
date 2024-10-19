@@ -4,7 +4,6 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-  remotePatterns: [{ protocol: "https", hostname: "img.clerk.com" }],
 };
 
 export default withSentryConfig(nextConfig, {
